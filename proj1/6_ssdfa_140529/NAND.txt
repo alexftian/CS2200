@@ -1,0 +1,2 @@
+NAND R1, R2, R3
+NAND R0, R1, R0

@@ -1,0 +1,75 @@
+CS 2200 Fall 2013
+Project 4
+Name: Taekyu Kim
+GT Number: 903012937
+
+Problem 1B
+----------
+
+1 CPU
+# of Context Switches: 99
+Total execution time: 67.6 s
+Total time spend in READY state: 389.9 s
+
+2 CPU
+# of Context Switches: 113
+Total execution time: 35.8 s
+Total time spend in READY state: 83.1 s
+
+4 CPU
+# of Context Switches: 184
+Total execution time: 33.0 s
+Total time spend in READY state: 0.1 s
+
+
+For the results, as number of CPUs goes up, the total execution reduces.
+It is because if I have more CPUs, I have more chance to deal with multiple tasks at a time.
+
+
+Problem 2B
+----------
+
+500ms
+# of Context Switches: 175
+Total execution time: 67.7 s
+Total time spend in READY state: 164.7 s
+
+800ms
+# of Context Switches: 136
+Total execution time: 67.6 s
+Total time spend in READY state: 228.3 s
+
+
+600ms
+# of Context Switches: 161
+Total execution time: 67.6 s
+Total time spend in READY state: 182.0 s
+
+
+400ms
+# of Context Switches: 203
+Total execution time: 67.6 s
+Total time spend in READY state: 134.5 s
+
+200ms
+# of Context Switches: 362
+Total execution time: 67.5 s
+Total time spend in READY state: 71.2s
+
+
+For the result, if I make timeslices shorter, total execution time remains about same.
+That is because even though I make the timeslices too short, so it makes more context switches which takes more time.
+
+
+Problem 3B
+----------
+
+
+# of Context Switches: 148
+Total execution time: 67.8 s
+Total time spend in READY state: 195.7 s
+
+
+Among the results of the program, Round-Robin Scheduler with 200ms timeslice has the least time spend in Ready state. Because by setting timeslice shortly, the process cycles fast, so it resembles like it does several short jobs
+
+

@@ -1,0 +1,44 @@
+process->state = PROCESS_READY;
+	int min;
+	int min_index = -1;
+	int i = 0;
+	if(scheduler_type != 3) {
+		pthread_mutex_lock(&ready_mutex);
+		add_list(process);
+		pthread_mutex_unlock(&ready_mutex);
+	} else if(scheduler_type == 3){
+		pthread_mutex_lock(&current_mutex);
+		min = process->static_priority;
+		for(i = 0; i < cpu_count; i++) {
+			if(current[i] != NULL && current[i]->static_priority < min)
+			{
+				min = current[i]->static_priority;
+				min_index = i;
+			}
+		}
+		pthread_mutex_unlock(&current_mutex);
+		if(min_index == -1) {
+			process->state = PROCESS_RUNNING;
+			pthread_mutex_lock(&current_mutex);
+			current[0] = process;
+			context_switch(0, process, time_slice);
+			pthread_mutex_unlock(&current_mutex);
+			
+		} else if(process->static_priority > current[min_index]->static_priority && !in_idle) {
+			pthread_mutex_lock(&current_mutex);
+			current[min_index]->state = PROCESS_WAITING;
+			pthread_mutex_lock(&ready_mutex);
+			add_list(current[min_index]);
+			pthread_mutex_unlock(&ready_mutex);
+			process->state = PROCESS_RUNNING;
+			current[min_index] = process;
+			pthread_mutex_unlock(&current_mutex);
+			force_preempt(min_index);
+		} else {
+			pthread_mutex_lock(&ready_mutex);
+			add_list(process);
+			pthread_mutex_unlock(&ready_mutex);
+		}	
+	}
+			
+	pthread_cond_signal(&is_empty);

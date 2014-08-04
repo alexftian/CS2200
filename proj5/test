@@ -1,0 +1,21 @@
+Cache: (10, 2, 0) WBWA
+allocate
+Read MISS for address 00000000
+Write HIT for address 00000000
+Read HIT for address 00000000
+Write HIT for address 00000001
+Read HIT for address 00000002
+Total memory/cache accesses: 5
+Total reads: 3
+Total read misses: 1
+Total read hits: 2
+Total writes: 2
+Total write misses: 0
+Total write hits: 2
+Bytes transferred to memory: 0
+Bytes transfered from memory: 4
+Total cache misses: 1
+Read hit rate: 0.00000
+Hit rate: 0.00000
+Total cache size (bits): 0
+AAT: 3.00000

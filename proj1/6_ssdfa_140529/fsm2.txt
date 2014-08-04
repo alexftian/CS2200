@@ -1,0 +1,127 @@
+Name: Taekyu Kim
+GTID: 903012937
+GT E-Mail: tkim1@gatech.edu
+
+List Your Control Signals Here In The Following Format:
+
+Bit Number | Control Signal | Description
+-----------------------------------------
+	0	|	DrPC		| If 1, Drive PC data to the bus
+	1	|	DrALU		| If 1, Drive ALU data to the bus
+	2	|	DrREG		| If 1, Drive register data to the bus
+	3	|	DrMEM		| If 1, Drive memory data to the bus
+	4	|	DrOFF		| If 1, Drive Sign_estend data to the bus
+	5	|	LdPC		| If 1, enables save data in PC
+	6	|	LdA		| If 1, enables save data in A
+	7	|	LdB		| If 1, enables save data in B
+	8	|	LdMAR		| If 1, enables save data in MAR
+	9	|	LdIR		| If 1, enables save data in IR
+	10	|	LdZ		| If 1, enables save data in Z
+	11	|	WrMEM		| If 1, writes data into memory
+	12	|	WrREG		| If 1, writes data into register
+	13,14	|	func		| choose function ALU will perform
+	15,16	|	regSel	| select register from IR
+	17	|	M		| It's 1 when OP code should be used 
+	18	|	T		| It's 1 when Z should be used
+  19- 23	|  Next state	| Indicates next state
+
+
+//Fill in everything for the control signals.
+//Be sure to include the next state as "control signals"
+
+
+State Machine:
+
+// Use the following format for every instruction:
+// STATE_0 -> STATE_1 -> STATE_2 -> STATE_N
+
+// Start off with FETCH_0. 
+// Give every state its own state code.
+// After each instruction finishes, go back to FETCH_0.
+
+FETCH_0 -> .... //start filling in how many fetch states you need.
+
+ADD : 
+FETCH0 -> FETCH1 -> FETCH2 -> ADD0 -> ADD1 -> ADD2 -> FETCH0
+
+NAND :
+FETCH0 -> FETCH1 -> FETCH2 -> NAND0 -> NAND1 -> NAND2 -> FETCH0
+
+ADDI :
+FETCH0 -> FETCH1 -> FETCH2 -> ADDI0 -> ADDI1 -> ADDI2 -> FETCH0
+ 
+LW :
+FETCH0 -> FETCH1 -> FETCH2 -> LW0 -> LW1 -> LW2 -> LW3 -> FETCH0
+
+SW :
+FETCH0 -> FETCH1 -> FETCH2 -> SW0 -> SW1 -> SW2 -> SW3 -> FETCH0
+
+FETCH0 -> FETCH1 -> FETCH2 -> BEQ0 -> BEQ1 -> BEQ2 -> FETCH0
+
+FETCH0 -> FETCH1 -> FETCH2 -> BEQ0 -> BEQ1 -> BEQ2 -> BEQ3 -> BEQ4 -> BEQ5 -> BEQ6 -> FETCH0
+
+SUB:
+FETCH0 -> FETCH1 -> FETCH2 -> SUB0 -> SUB1 -> SUB2
+
+SUBI :
+FETCH0 -> FETCH1 -> FETCH2 -> SUBI0 -> SUBI1 -> SUBI2
+
+INC :
+FETCH0 -> FETCH1 -> FETCH2 -> INC0 -> INC1
+
+// Finally, enter in the ROM contents here:
+
+State Number | Control Bit String
+---------------------------------
+             |                   
+FETCH
+000000000000 | 100000101000000000000001
+000000000001 | 000100000100000000000010
+000000000010 | 010001000000011001000011
+
+ADD
+000000000011 | 001000100000000010000100
+000000000100 | 001000010000000100000101
+000000000101 | 010000000000100000000000
+
+NAND
+000001000011 | 001000100000000010000100
+000001000100 | 001000010000000100000101
+000001000101 | 010000000000101000000000
+
+ADDI
+000010000011 | 001000100000000010000100
+000010000100 | 000010010000000000000101
+000010000101 | 010000000000100000000000
+
+LW
+000011000011 | 001000100000000010000100
+000011000100 | 000010010000000000000101
+000011000101 | 010000001000000000000110
+000011000110 | 000100000000100000000000
+
+SW
+000100000011 | 001000100000000010000100
+000100000100 | 000010010000000000000101
+000100000101 | 010000001000000000000110
+000100000110 | 001000000001000000000000
+
+BEQ
+
+JALR
+000110000011 | 100000000000100010000100
+000110000100 | 001001000000000000000101
+
+SUB
+000111000011 | 001000100000000010000100
+000111000100 | 001000010000000100000101
+000111000101 | 010000000000110000000000
+
+SUBI
+001000000011 | 001000100000000010000100
+001000000100 | 000010010000000000000101
+001000000101 | 000000000000110000000000
+
+INC
+001001000011 | 001000100000000000000100
+001001000100 | 010000000000111000000000

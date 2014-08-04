@@ -1,0 +1,36 @@
+Name: Taekyu Kim
+GTID: 903012937
+GT E-Mail: tkim1@gatech.edu
+
+Number of Registers: 16 registers
+
+
+R-Type Format (For Register-Type Instructions):
+-Note that these are things like ADD, NAND, ect.
+ ADD, NAND, SUB, INC
+I-Type Format (For Instructions with immediate operands and offsets):
+-Note that these are things like LW, SW, ADDI, BEQ, ect.
+ LW, SW, ADDI, BEQ, SUBI
+J-Type Format (For Jump Instructions):
+-Note that these are thigns like JALR
+ JALR
+
+   Instruction   |      Format     |   Description   
+----------------------------------------------------------------------
+    ADD          | ADD RZ, RX, RY  |  RZ = RX + RY
+    NAND         | NAND RZ, RX, RY |  RZ = RX NAND RY
+    ADDI		 | ADDI RZ, RX, IMM |  RZ <- RX + Sign_Extended
+    LW		 | LW RZ, RX, OFF  |  RZ <- MEM[RX + Sign_Extended]
+    SW		 | SW RZ, RX, OFF  |  MEM[RX + Sign_Extended(OFF)] <- RZ
+    BEQ		 | BEQ RZ, RX, OFF |  if RZ==RX, then branch to PC + 1 + Sign_Extended(Off). otherwise, go to the next instruction
+    JALR		 | JALR RZ, RX	   |  Store PC+1 into RX, and then branch to the address in RZ
+	<= check if it's RY not RZ
+    SUB		 | SUB RZ, RX, RY  |  RZ = RX - RY
+    SUBI	 | SUB RZ, RX, IMM |  RZ <- RX - Sign_Extended
+    INC		 | INC RZ	   |  RZ = RZ + 1
+    
+
+
+
+
+ 
